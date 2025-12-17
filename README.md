@@ -3,8 +3,6 @@
 This repository contains my work on deploying **Damn Vulnerable Web Application (DVWA)** on a local Kubernetes cluster and demonstrating common web application vulnerabilities.
 The main goal of this exercise was to understand how vulnerable applications behave in a containerized and Kubernetes-based environment.
 
-> ⚠️ **Note:**
-> DVWA is intentionally insecure and is used only for learning and testing. It should never be exposed in real production environments.
 
 ---
 
