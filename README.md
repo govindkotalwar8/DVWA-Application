@@ -6,7 +6,7 @@ The main goal of this exercise was to understand how vulnerable applications beh
 
 ---
 
-## 🎯 Objective
+## Objective
 
 * Set up a local Kubernetes cluster using **Minikube**
 * Deploy DVWA as a Kubernetes application
@@ -18,7 +18,7 @@ The main goal of this exercise was to understand how vulnerable applications beh
 
 ---
 
-## 🖥️ Environment Used
+## Environment Used
 
 * OS: Ubuntu (AWS EC2 instance)
 * Container Runtime: Docker
@@ -27,7 +27,7 @@ The main goal of this exercise was to understand how vulnerable applications beh
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 .
@@ -47,7 +47,7 @@ All screenshots related to Kubernetes setup and attack demonstrations are stored
 
 ---
 
-## 🚀 Kubernetes Setup
+## Kubernetes Setup
 
 Minikube was started using the Docker driver:
 
@@ -61,12 +61,12 @@ Cluster status was verified using:
 kubectl get nodes
 ```
 
-📸 **Screenshot:** Kubernetes node in `Ready` state
+ **Screenshot:** Kubernetes node in `Ready` state
 ![Kubernetes Nodes](screenshots/k8s-nodes.png)
 
 ---
 
-## 📦 Deploying DVWA on Kubernetes
+## Deploying DVWA on Kubernetes
 
 ### Step 1: Create Namespace
 
@@ -150,7 +150,7 @@ kubectl get svc -n dvwa
 
 ---
 
-## 🌐 Accessing DVWA
+## Accessing DVWA
 
 Because Minikube was running on an EC2 instance, port-forwarding was used to access the application:
 
@@ -171,18 +171,18 @@ Username: admin
 Password: password
 ```
 
-📸 **Screenshot:** DVWA login/dashboard
+**Screenshot:** DVWA login/dashboard
 ![DVWA Login](screenshots/dvwa-login.png)
 
 ---
 
-## 🔥 Attack Demonstrations
+## Attack Demonstrations
 
 Below are the three attack vectors that were tested on DVWA.
 
 ---
 
-### 1️⃣ SQL Injection
+### 1.SQL Injection
 
 **Location:** DVWA → SQL Injection
 
@@ -197,7 +197,7 @@ Below are the three attack vectors that were tested on DVWA.
 * The query logic was bypassed
 * Multiple user records were returned
 
-📸 Screenshot:
+Screenshot:
 ![SQL Injection](screenshots/sql-injection.png)
 
 **Explanation:**
@@ -205,7 +205,7 @@ User input was not properly validated, allowing injected SQL statements to chang
 
 ---
 
-### 2️⃣ Command Injection
+### 2️.Command Injection
 
 **Location:** DVWA → Command Injection
 
@@ -220,7 +220,7 @@ User input was not properly validated, allowing injected SQL statements to chang
 * The command was executed on the server
 * The running user was displayed
 
-📸 Screenshot:
+Screenshot:
 ![Command Injection](screenshots/command-injection.png)
 
 **Explanation:**
@@ -228,7 +228,7 @@ Input was passed directly to system commands without sanitization, making comman
 
 ---
 
-### 3️⃣ Reflected XSS
+### 3️.Reflected XSS
 
 **Location:** DVWA → XSS (Reflected)
 
@@ -242,26 +242,6 @@ Input was passed directly to system commands without sanitization, making comman
 
 * A JavaScript alert popup appeared in the browser
 
-📸 Screenshot:
+Screenshot:
 ![XSS](screenshots/xss.png)
 
-**Explanation:**
-The application reflected user input directly into the response, allowing execution of malicious JavaScript.
-
----
-
-## 📝 Key Observations
-
-* DVWA works reliably in Kubernetes when deployed as a single pod
-* Kubernetes networking behaves differently on Minikube when used on cloud VMs
-* Common vulnerabilities can be easily demonstrated in containerized environments
-* Proper input validation and secure coding practices are critical
-
----
-
-## ✅ Conclusion
-
-In this project, DVWA was successfully deployed on a Kubernetes cluster using Minikube.
-Three common web application vulnerabilities—**SQL Injection, Command Injection, and Cross-Site Scripting**—were demonstrated successfully.
-
-This exercise helped in understanding both Kubernetes deployment basics and real-world web security issue.
