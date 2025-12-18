@@ -145,7 +145,7 @@ kubectl get pods -n dvwa
 kubectl get svc -n dvwa
 ```
 
-📸 **Screenshot:** DVWA pod and service status
+**Screenshot:** DVWA pod and service status
 ![Pods and Services](screenshots/k8s-pods-services.png)
 
 ---
